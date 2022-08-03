@@ -14,8 +14,15 @@ const cursos = [curso1, curso2, curso3, curso4]
 
 console.table(cursos)
 
-const curso = new Curso(prompt("Ingrese el nombre"), parseInt(prompt("Ingrese el precio")))
+let agregarCurso = prompt("¿Desea agregar otro curso?").toLowerCase()
 
-cursos.push(curso)
+const precios = cursos.map(curso => curso.precio)
 
-console.table(cursos)
+if (agregarCurso == "si") {
+    const curso = new Curso(prompt("Ingrese el nombre"), parseInt(prompt("Ingrese el precio")))
+    cursos.push(curso)
+    console.table(cursos)
+    console.log(`De acuerdo su precio final es ${precios.reduce((prev, act) => prev + act, 0)}`)
+} else if (agregarCurso == "no"){
+    console.log(`De acuerdo su precio final es ${precios.reduce((prev, act) => prev + act, 0)}`)
+}
